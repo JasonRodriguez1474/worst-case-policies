@@ -17,7 +17,7 @@
 		"@openrouter/ai-sdk-provider": "^1.2.0",
 		"@types/markdown-it": "^14.1.2",
 		"ai": "^5.0.31",
-		"jspdf": "^3.0.2",
+		"jspdf": "^4.2.0",
 		"jspdf-autotable": "^5.0.2",
 		"jszip": "^3.10.1",
 		"markdown-it": "^14.1.0",
