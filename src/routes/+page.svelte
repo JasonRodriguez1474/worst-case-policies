@@ -2,7 +2,7 @@
 	import type { PolicyFormData, SecurityFramework, PolicySet } from '$lib/types';
 	import PolicyPreview from '$lib/components/PolicyPreview.svelte';
 	import { fade, fly, scale } from 'svelte/transition';
-	import { quintOut, elasticOut } from 'svelte/easing';
+	import { elasticOut } from 'svelte/easing';
 
 	let formData: PolicyFormData = {
 		organizationName: '',
@@ -164,7 +164,7 @@
 						<div class="examples-section">
 							<p class="examples-title">Example constraints:</p>
 							<div class="example-tags">
-								{#each constraintExamples as example}
+								{#each constraintExamples as example (example)}
 									<button type="button" class="example-tag" on:click={() => formData.constraints = example}>
 										{example}
 									</button>
