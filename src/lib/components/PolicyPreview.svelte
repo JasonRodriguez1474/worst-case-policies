@@ -3,7 +3,7 @@
 	import { marked } from 'marked';
 	import { exportToPDF } from '$lib/utils/pdfExporter';
 	import { fade, fly, scale } from 'svelte/transition';
-	import { quintOut, elasticOut } from 'svelte/easing';
+	import { elasticOut } from 'svelte/easing';
 	import type { PolicySet, SecurityFramework } from '$lib/types';
 
 	export let policies: PolicySet;

@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
 import MarkdownIt from 'markdown-it';
-import jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import type { PolicySet, SecurityFramework } from '$lib/types';
 
