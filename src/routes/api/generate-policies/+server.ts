@@ -3,10 +3,11 @@ import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import { generateText } from 'ai';
 import type { PolicyFormData, PolicySet, SecurityFramework } from '$lib/types';
 import { OPENROUTER_API_KEY } from '$env/static/private';
-
-const openrouter = createOpenRouter({ apiKey: OPENROUTER_API_KEY });
-
+import { env } from '$env/dynamic/private';
 import type { RequestEvent } from '@sveltejs/kit';
+
+const DEFAULT_MODEL = 'meta-llama/llama-3.1-8b-instruct';
+const openrouter = createOpenRouter({ apiKey: OPENROUTER_API_KEY });
 
 export async function POST({ request }: RequestEvent) {
 	try {
@@ -141,18 +142,20 @@ The policy must follow this EXACT format:
 Key requirements for ${formData.framework}:
 ${frameworkMapping.incidentResponse.join('\n')}`;
 
+		const modelId = env.OPENROUTER_MODEL?.trim() || DEFAULT_MODEL;
+
 		// Generate all three policies concurrently
 		const [accessControlResult, acceptableUsageResult, incidentResponseResult] = await Promise.all([
 			generateText({
-				model: openrouter('mistralai/ministral-3b'),
+				model: openrouter(modelId),
 				prompt: accessControlPrompt
 			}),
 			generateText({
-				model: openrouter('mistralai/ministral-3b'),
+				model: openrouter(modelId),
 				prompt: acceptableUsagePrompt
 			}),
 			generateText({
-				model: openrouter('mistralai/ministral-3b'),
+				model: openrouter(modelId),
 				prompt: incidentResponsePrompt
 			})
 		]);
